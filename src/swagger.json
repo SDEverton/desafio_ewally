@@ -1,0 +1,63 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ewally Documentation",
+    "description": "This is an API Ewally",
+    "version": "1.0.0",
+    "contact": {
+      "email": "evertonsdsilva@gmail.com"
+    }
+  },
+  "paths": {
+    "/boleto/{code}": {
+      "get": {
+        "tags": ["Boleto"],
+        "summary": "Consultar linhas digitáveis de boleto",
+        "description": "Consultar linhas digitáveis de boleto de título bancário e pagamento de concessionárias, verificando se a mesma é válida ou não. Sendo válida epossuindo valor e/ou data de vencimento ter o retorno desses dados.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "linha digitável do boleto",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "barCode": "21299758700000020000001121100012100447561740",
+                    "amount": "20.00",
+                    "expirationDate": "2018-07-16"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "error": {
+                      "message": "Não foi possível identificar o boleto"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
