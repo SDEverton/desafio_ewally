@@ -8,7 +8,6 @@ module.exports = {
     {
       alias: {
         "@modules": "./src/modules",
-        "@config": "./src/config",
         "@shared": "./src/shared",
         "@utils": "./src/utils"
       }

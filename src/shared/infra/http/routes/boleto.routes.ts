@@ -1,9 +1,11 @@
 import { Router } from "express";
 
+import { ValidationController } from "@modules/boleto/useCases/validationOfboleto/ValidationController";
+
 const boletoRouter = Router();
 
-boletoRouter.get("/:code", (request, response) => {
-  return response.json({ message: "Hello World" });
-});
+const validationController = new ValidationController();
+
+boletoRouter.get("/:code", validationController.handle);
 
 export { boletoRouter };
