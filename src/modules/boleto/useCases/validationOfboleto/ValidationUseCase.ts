@@ -1,15 +1,13 @@
 import { addDays, format } from "date-fns";
-import { injectable } from "tsyringe";
 
 import { IResponse } from "@modules/boleto/dtos/IResponseDTO";
 import { AppError } from "@shared/errors/AppError";
 import { substringReplace } from "@utils/substringReplace";
 
-@injectable()
 class ValidationUseCase {
   private identificationTypeCode(code: string): string {
     if (typeof code !== "string")
-      throw new AppError("Insira uma string válida!");
+      throw new AppError("Insira uma string válida!", 400);
 
     code = code.replace(/[^0-9]/g, "");
 
@@ -19,7 +17,7 @@ class ValidationUseCase {
     if (code.length === 48) {
       return "BOLETO_CONCESSIONARIAS";
     }
-    throw new AppError("Número de dígitos inválido!");
+    throw new AppError("Número de dígitos inválido!", 400);
   }
 
   private barCode(code: string): string {
@@ -54,24 +52,23 @@ class ValidationUseCase {
   }
 
   private identifyValue(code: string): string {
-    let valorBoleto = "";
-    let valorFinal;
+    let valueBoleto = "";
+    let valueFinal = "";
 
-    valorBoleto = code.substr(37);
-    valorFinal = `${valorBoleto.substr(0, 8)}.${valorBoleto.substr(8, 2)}`;
+    valueBoleto = code.substr(37);
+    valueFinal = `${valueBoleto.substr(0, 8)}.${valueBoleto.substr(8, 2)}`;
 
-    let char = valorFinal.substr(1, 1);
+    let char = valueFinal.substr(1, 1);
     while (char === "0") {
-      valorFinal = substringReplace(valorFinal, "", 0, 1);
-      char = valorFinal.substr(1, 1);
+      valueFinal = substringReplace(valueFinal, "", 0, 1);
+      char = valueFinal.substr(1, 1);
     }
 
-    return parseFloat(valorFinal).toFixed(2);
+    return parseFloat(valueFinal).toFixed(2);
   }
 
   public execute(code: string): IResponse {
     const identificationTypeCode = this.identificationTypeCode(code);
-    console.log(identificationTypeCode);
 
     const retorno: IResponse = {
       barCode: this.barCode(code),
