@@ -83,6 +83,13 @@ yarn dev or npm run dev
 
 ```
 
+Caso queira testar em um ambiente real (AWS) digite
+
+```
+http://3.92.175.189/api-docs/
+
+```
+
 ## 🔧 Rodando os testes <a name = "tests"></a>
 
 ```
