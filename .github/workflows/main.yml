@@ -42,7 +42,5 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd ~/app/desafio_ewally
-            export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v16.15.1/bin
+          script: whoami
   
