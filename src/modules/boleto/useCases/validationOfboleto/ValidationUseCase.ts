@@ -68,7 +68,7 @@ class ValidationUseCase {
   }
 
   public execute(code: string): IResponse {
-    const identificationTypeCode = this.identificationTypeCode(code);
+    this.identificationTypeCode(code);
 
     const retorno: IResponse = {
       barCode: this.barCode(code),
