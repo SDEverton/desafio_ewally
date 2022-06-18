@@ -34,7 +34,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: "., !node_modules"
-          target: "~/app/dock"
+          target: "~/app/desafio_ewally"
           
       - name: Update API
         uses: appleboy/ssh-action@master
@@ -44,6 +44,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/app/dock
+            cd ~/app/desafio_ewally
             yarn
             pm2 restart server
