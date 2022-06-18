@@ -44,6 +44,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/app/desafio_ewally
-            yarn
             pm2 restart server
