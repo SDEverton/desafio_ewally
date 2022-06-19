@@ -76,7 +76,7 @@ Com o container no ar basta digitar a url no navegador
 http://localhost:3333/api-docs
 ```
 
-Caso queira rodar sem o Docker terá de instalar o Postgres na máquina e rodar o comando
+Caso queira rodar sem o Docker terá que rodar o comando
 
 ```
 yarn dev or npm run dev
